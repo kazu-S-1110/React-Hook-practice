@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 
 const App = (props) => {
@@ -11,6 +11,24 @@ const App = (props) => {
   //そのまま使うことも可能（state.nameとかstate.priceとか）だが、長いのでリファクタリングがオススメ
   const { name, price } = state
   const reset = () => setState(props)
+
+  //useEffectは関数、第一引数に関数を渡す(発動タイミングは「レンダリングが終わった後」と「DOMが再レンダリングされた後（例えばOncilckが発動した後とか）」)
+  useEffect(() => {
+    console.log("hello render(^o^)")
+  })
+
+  //発動タイミングを初期レンダリングに限定させるには第二引数に空の配列を渡す
+  useEffect(() => {
+    console.log("this is initial")
+  }, [])
+
+  //発動タイミングを特定のDOMが変更されたときにしたい場合、第二引数にその要素を渡す
+  useEffect(() => {
+    console.log("this is specific")
+  }, [name])
+
+
+
 
 
   return (
