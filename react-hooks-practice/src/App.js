@@ -5,22 +5,23 @@ const App = (props) => {
   // 初期値をここで設定するパターン
   // const initialStates = { name: "", price: 1000 }
 
-  const [name, setName] = useState(props.name)
-  const [price, setPrice] = useState(props.price)
-  const reset = () => {
-    setPrice(props.price)
-    setName(props.name)
-  }
+  //useStateにはオブジェクトとして渡すことも可能（複数状態を渡せるってこと）
+  const [state, setState] = useState(props) // console.log(state)　=> {name: "sample", price: 1000}
+
+  //そのまま使うことも可能（state.nameとかstate.priceとか）だが、長いのでリファクタリングがオススメ
+  const { name, price } = state
+  const reset = () => setState(props)
 
 
   return (
     <>
       <Container>
         <Title>現在の{name}は、{price}円です</Title>
-        <Button onClick={() => setPrice(price + 1)}>+1</Button>
-        <Button onClick={() => setPrice(price - 1)}>-1</Button>
+        <Button onClick={() => setState({ ...state, price: price + 1 })}>+1</Button>
+        <Button onClick={() => setState({ ...state, price: price - 1 })}>+1</Button>
         <Button onClick={reset}>Reset</Button>
-        <input value={name} onChange={e => setName(e.target.value)}></input>
+        <input value={name} onChange={e => setState({ ...state, name: e.target.value })}></input>
+
       </Container>
 
     </>
