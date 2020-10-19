@@ -19,6 +19,15 @@ const App = () => {
     setBody("")
   }
 
+  const deleteAllEvents = e => {
+    e.preventDefault()
+    const result = window.confirm("全てのイベントを本当に削除しても良いですか？") //削除前に確認メッセージを実装
+    if (result) dispatch({ type: "DELETE_ALL_EVENT" })
+  }
+
+  //タイトルが空かボディが空の場合、ボタンを無効化
+  const unCreatable =  title === "" || body === ""
+
   return (
     <>
       <div className="container-fluid mt-5">
@@ -35,18 +44,18 @@ const App = () => {
             <textarea type="text" className="form-control" id="formEventBody" value={body} onChange={e => setBody(e.target.value)}/>
           </div>
 
-          <button className="btn btn-primary" onClick={addEvent}>イベントを作成する</button>
-          <button className="btn btn-danger">全てのイベントを削除する</button>
+          <button className="btn btn-primary" disabled={unCreatable} onClick={addEvent}>イベントを作成する</button>
+          <button className="btn btn-danger" disabled={state.length === 0} onClick={deleteAllEvents}>全てのイベントを削除する</button>
 
         </form>
 
-        <h4 className="mt-4">イベント一覧</h4>
+        <h4 className="mt-5">イベント一覧</h4>
         <table className="table table-hover">
           <thead>
             <tr>
               <th>id</th>
               <th>タイトル</th>
-              <th>メッセージ</th>
+              <th>ボディー</th>
             </tr>
           </thead>
           <tbody>
