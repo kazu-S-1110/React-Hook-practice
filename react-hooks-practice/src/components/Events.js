@@ -5,7 +5,7 @@ import AppContext from "../contexts/AppContext"
 
 
 const Events = ({ state, dispatch }) => {
-  const value = useContext(AppContext) {/* <= useContextの場合 */} 
+  const value = useContext(AppContext) //<= useContextの場合 
   return (
     <>
       {/* 以下のConsumerの記述は古いのでuseContextで書いた方がスマート */}
