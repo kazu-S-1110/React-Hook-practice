@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { CREATE_EVENT, DELETE_ALL_EVENT } from '../actions';
+import React, { useState, useContext } from 'react'
+import { CREATE_EVENT, DELETE_ALL_EVENT } from '../actions'
+import AppContext from "../contexts/AppContext"
 
 
-
-const EventForm = ({ state, dispatch }) => {
-  // const [state, dispatch] = useReducer(reducer, [])
+const EventForm = () => {
+  const { state, dispatch } = useContext(AppContext)
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
   const addEvent = e => {
     e.preventDefault()
-    // console.log({title, body}) アクセスが可能か確認
     dispatch({ //この式でイベントを追加可能
       type: CREATE_EVENT,
       title,
