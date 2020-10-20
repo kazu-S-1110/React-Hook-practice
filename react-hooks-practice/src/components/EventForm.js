@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { CREATE_EVENT, DELETE_ALL_EVENT } from '../actions';
+
+
 
 const EventForm = ({ state, dispatch }) => {
   // const [state, dispatch] = useReducer(reducer, [])
@@ -8,7 +11,7 @@ const EventForm = ({ state, dispatch }) => {
     e.preventDefault()
     // console.log({title, body}) アクセスが可能か確認
     dispatch({ //この式でイベントを追加可能
-      type: "CREATE_EVENT",
+      type: CREATE_EVENT,
       title,
       body
     })
@@ -20,7 +23,7 @@ const EventForm = ({ state, dispatch }) => {
   const deleteAllEvents = e => {
     e.preventDefault()
     const result = window.confirm("全てのイベントを本当に削除しても良いですか？") //削除前に確認メッセージを実装
-    if (result) dispatch({ type: "DELETE_ALL_EVENT" })
+    if (result) dispatch({ type: DELETE_ALL_EVENT })
   }
 
   //タイトルが空かボディが空の場合、ボタンを無効化
