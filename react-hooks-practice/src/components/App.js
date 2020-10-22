@@ -4,6 +4,7 @@ import EventForm from "./EventForm"
 import Events from "./Events"
 import reducer from "../reducers/index"
 import AppContext from "../contexts/AppContext"
+import OperationLogs from "./OperationLogs"
 
 const App = () => {
   const initialState = {
@@ -16,7 +17,7 @@ const App = () => {
       <div className="container-fluid mt-5">
         <EventForm />
         <Events />
-        
+        <OperationLogs />
       </div>
     </AppContext.Provider>
   )
